@@ -1,0 +1,205 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #ffc0cb, #ffe4e1);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  color: white;
+}
+#visuals {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.player-box {
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 20px #fff;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+audio {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.lyrics {
+  margin-top: 25px;
+  font-size: 1.3rem;
+  height: 120px; /* can be adjusted */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.lyric-line {
+  opacity: 0.3;
+  transition: all 0.3s ease-in-out;
+  padding: 5px 0;
+}
+.lyric-line.active {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.4rem;
+  opacity: 1;
+}
+
+.password-container {
+  z-index: 9999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input[type="password"] {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #000;
+  font-size: 1rem;
+}
+button {
+  padding: 10px 15px;
+  margin-left: 10px;
+  border:none;
+  background-color: #bdb3b3;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Emojis & Blurred Corners */
+.floating-emoji {
+  position: absolute;
+  font-size: 2rem;
+  z-index: 1000;
+  pointer-events: none;
+  animation: float 10s linear infinite;
+  top: 100vh;
+}
+@keyframes float {
+  0% { transform: translateY(0vh) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+}
+
+
+
+/* Base card look */
+
+
+@keyframes floatSoft {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  50% { transform: translate(3px, -3px) rotate(1deg); }
+  100% { transform: translate(-3px, 3px) rotate(-1deg); }
+}
+
+.wrapper {
+  display: none;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#mainContainer {
+  position: relative;
+  z-index: 10; /* Makes sure player is above background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.floating-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.floating-img {
+  position: absolute;
+  width: 70px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 12px;
+  opacity: 0.9;
+  animation: floatSoft 4s ease-in-out infinite alternate;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+}
+
+
+
+@media (max-width: 600px) {
+  .player-box {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .lyrics {
+    font-size: 1rem;
+    height: 100px;
+  }
+
+  .lyric-line.active {
+    font-size: 1.1rem;
+  }
+
+  .floating-img {
+    width: 50px;
+    height: 65px;
+  }
+
+  input[type="password"] {
+    width: 60vw;
+    font-size: 0.9rem;
+  }
+
+  button {
+    margin-top: 30px;
+    font-size: 1rem;
+    margin-left: 33%;
+    align-items: center;
+  }
+
+  .floating-emoji {
+    font-size: .5rem;
+  }
+}
+
+body.locked {
+  background: url('images/background.png') no-repeat center center fixed;
+  background-size: cover;
+  background-position: 50% .5%;
+  background-size: 130%;
+  background-color: #F486B1;
+}
+
+body.unlocked {
+  background: linear-gradient(to bottom right, #ffc0cb, #ffe4e1);
+}
